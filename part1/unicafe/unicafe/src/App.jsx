@@ -65,6 +65,9 @@ function App() {
       <p>good {good || 0}</p>
       <p>neutral {neutral || 0}</p>
       <p>bad {bad || 0}</p>
+      <p>all {Number(good) + Number(neutral) + Number(bad) || 0}</p>
+      <p>average {(Number(good) * 1 + Number(neutral) * 0 + Number(bad) * -1) / (Number(good) + Number(bad) + Number(neutral)) || 0}</p>
+      <p>positive {(Number(good) / (Number(good) + Number(bad) + Number(neutral)) * 100) || 0} %</p>
     </>
   )
 }
