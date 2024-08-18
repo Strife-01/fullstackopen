@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 
 const App = () => {
   const anecdotes = [
@@ -13,16 +13,47 @@ const App = () => {
   ];
    
   const [selected, setSelected] = useState(() => 0);
+  const [vote, setVote] = useState(() => new Array(anecdotes.length).fill(0));
+  const [votesObj, setVotesObj] = useState(() => {
+    return {...new Array(anecdotes.length).fill(0)};
+  });
 
   const handleSelected = () => {
     return setSelected(() => Math.floor(Math.random() * anecdotes.length));
   }
 
+  const handleVote = () => {
+    return setVote((arr) => {
+      const copy = [...arr];
+      copy[selected]++;
+      return copy;
+    });
+  }
+
+  const handleVoteObj = () => {
+    return setVotesObj((obj) => {
+      const copy = {...obj};
+      copy[selected]++;
+      return copy;
+    })
+  }
+
   return (
     <>
       <div>
-        {anecdotes[selected]}
+        <div>
+          {anecdotes[selected]}
+        </div>
+        <div>
+          {`has ${vote[selected]} votes.`}
+        </div>
+        <div>
+          {`has ${votesObj[selected]} votes.`}
+        </div>
+
       </div>
+      <Button text={'vote array'} handleClick={handleVote}/>
+      <Button text={'vote object'} handleClick={handleVoteObj}/>
       <Button text={'next anecdote'} handleClick={handleSelected}/>
     </>
   )
