@@ -1,6 +1,24 @@
 import { useState } from 'react'
 import Button from './button.jsx'
 
+const Statistics = ({good, neutral, bad}) => {
+  const all = good + neutral + bad;
+  const average = (good + bad * -1) / all;
+  const positive = good / all * 100;
+
+  return (
+    <>
+      <h1>statistics</h1>
+      <p>good {good}</p>
+      <p>neutral {neutral}</p>
+      <p>bad {bad || 0}</p>
+      <p>all {all}</p>
+      <p>average {average || 0}</p>
+      <p>positive {positive || 0} %</p>
+    </>
+  );
+}
+
 function App() {
   const [good, setGood] = useState(() => {
     const goodCount = localStorage.getItem('good'); 
@@ -55,19 +73,10 @@ function App() {
   return (
     <>
       <h1>give feedback</h1>
-      <br/>
       <Button buttonText={'good'} handleButton={handleGood}/>
       <Button buttonText={'neutral'} handleButton={handleNeutral}/>
       <Button buttonText={'bad'} handleButton={handleBad}/>
-      <br/>
-      <h1>statistics</h1>
-      <br/>
-      <p>good {good || 0}</p>
-      <p>neutral {neutral || 0}</p>
-      <p>bad {bad || 0}</p>
-      <p>all {Number(good) + Number(neutral) + Number(bad) || 0}</p>
-      <p>average {(Number(good) * 1 + Number(neutral) * 0 + Number(bad) * -1) / (Number(good) + Number(bad) + Number(neutral)) || 0}</p>
-      <p>positive {(Number(good) / (Number(good) + Number(bad) + Number(neutral)) * 100) || 0} %</p>
+      <Statistics good={Number(good) || 0} neutral={Number(neutral) || 0} bad={Number(bad) || 0}/>
     </>
   )
 }
