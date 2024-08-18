@@ -14,9 +14,12 @@ const App = () => {
    
   const [selected, setSelected] = useState(() => 0);
   const [vote, setVote] = useState(() => new Array(anecdotes.length).fill(0));
+  const [mostVoted, setMostVoted] = useState(() => null);
+  /*
   const [votesObj, setVotesObj] = useState(() => {
     return {...new Array(anecdotes.length).fill(0)};
   });
+  */
 
   const handleSelected = () => {
     return setSelected(() => Math.floor(Math.random() * anecdotes.length));
@@ -26,10 +29,22 @@ const App = () => {
     return setVote((arr) => {
       const copy = [...arr];
       copy[selected]++;
+      
+      let mostVotedLocal = selected;
+      for (let i = 0; i < copy.length; i++) {
+        if (copy[i] > copy[mostVotedLocal]) {
+          mostVotedLocal = i;
+        }
+      }
+
+      setMostVoted(() => mostVotedLocal);
+      console.log(mostVotedLocal);
+
       return copy;
     });
   }
-
+  
+  /*
   const handleVoteObj = () => {
     return setVotesObj((obj) => {
       const copy = {...obj};
@@ -37,24 +52,30 @@ const App = () => {
       return copy;
     })
   }
+  */
 
   return (
     <>
       <div>
-        <div>
+        <h1>Anecdote of the day</h1>
+        <div> 
           {anecdotes[selected]}
         </div>
         <div>
           {`has ${vote[selected]} votes.`}
         </div>
-        <div>
-          {`has ${votesObj[selected]} votes.`}
-        </div>
+        {/* <div> {`has ${votesObj[selected]} votes.`} </div> */}
 
       </div>
       <Button text={'vote array'} handleClick={handleVote}/>
-      <Button text={'vote object'} handleClick={handleVoteObj}/>
+      {/* <Button text={'vote object'} handleClick={handleVoteObj}/> */}
       <Button text={'next anecdote'} handleClick={handleSelected}/>
+      <h1>Anecdote with the most votes</h1>
+      {mostVoted != null ? (
+        anecdotes[mostVoted]
+      ):(
+      <p>There is no voted anecdote.</p>
+      )}
     </>
   )
 }
