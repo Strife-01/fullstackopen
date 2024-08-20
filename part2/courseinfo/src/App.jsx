@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import Course from './components/course.jsx'
+import Courses from './components/courses.jsx'
 
 function App() {
   const courses = [
@@ -47,13 +47,7 @@ function App() {
     },
   ];
   
-  return (
-    <>
-      <h1>Web development curriculum</h1>
-      <ul>
-        {courses.map((course) => <Course key={course.id} course={course}/>)}
-      </ul>
-    </>);
+  return <Courses courses={courses}/>;
 }
 
 export default App
