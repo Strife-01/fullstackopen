@@ -9,7 +9,20 @@ const App = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const name = e.target.name.value;
-    setPersons(persons.concat({name: name}));
+    let isInList = false;
+    
+    // Validate the input
+    persons.forEach(person => {
+      if (person.name === name) {
+        window.alert(`${name} is already in the list!`);
+        isInList = true;
+      }
+    });
+
+    if (isInList === false) {
+      setPersons(persons.concat({name: name}));
+    }
+
     setNewName('');
     e.target.name.value = '';
   }
