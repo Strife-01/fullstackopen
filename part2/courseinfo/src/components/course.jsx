@@ -5,7 +5,7 @@ import Sum from './sum.jsx'
 const Course = ({course}) => {
   return (
     <>
-      <Header key={course.id} name={course.name}/>
+      <Header name={course.name}/>
       <Content parts={course.parts}/>
       <Sum parts={course.parts}/>
     </>
