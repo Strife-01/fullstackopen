@@ -1,4 +1,7 @@
 import {useState} from 'react'
+import axios from 'axios'
+
+const URL = 'http://localhost:3001/persons';
 
 const PersonForm = ({persons, setPersons, personNextId}) => {
   
@@ -26,8 +29,15 @@ const PersonForm = ({persons, setPersons, personNextId}) => {
     });
       
     if (isInList === false && name != '') {
-      setPersons(persons.concat({name: name, number: number, id: personNextId.current}));
-      personNextId.current++;
+      axios.post(URL, {
+        name: name,
+        number: number
+      })
+      .then(person => {
+          setPersons(persons.concat(person.data));
+      });
+      //setPersons(persons.concat({name: name, number: number, id: personNextId.current}));
+      //personNextId.current++;
     }
 
     setNewName('');
