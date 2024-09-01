@@ -19,12 +19,20 @@ const PersonForm = ({persons, setPersons, personNextId}) => {
       window.alert(`Name cannot be empty!`);
     }
 
-    persons.forEach(person => {
-      if (person.name === name) {
-        window.alert(`${name} is already in the list!`);
-        isInList = true;
+    const update_person = persons.find(person => person.name === name);
+    if (update_person != undefined) {
+      isInList = true;
+      const change_number = window.confirm(`${update_person.name} is already in the list! Replace the old number with the new one?`);
+      if (change_number === true) {
+        serverDataProcessing
+          .updateData(update_person, number)
+          .then(data => {
+            const newPersons = persons.filter((person) => person.id != update_person.id);
+            setPersons(() => newPersons.concat(data.data));
+          })
       }
-    });
+
+    }
       
     if (isInList === false && name != '') {
       serverDataProcessing.insertData(name, number)

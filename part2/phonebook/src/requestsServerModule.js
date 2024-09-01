@@ -45,4 +45,17 @@ async function deleteData(id) {
   }
 }
 
-export default {fetchData, insertData, deleteData}
+async function updateData(person, number) {
+  try {
+    const update_URL = `${URL}/${person.id}`;
+    const data = await axios.put(update_URL, {
+      ...person,
+      number: number
+    })
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export default {fetchData, insertData, deleteData, updateData}
