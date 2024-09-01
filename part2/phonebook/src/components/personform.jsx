@@ -1,7 +1,5 @@
 import {useState} from 'react'
-import axios from 'axios'
-
-const URL = 'http://localhost:3001/persons';
+import serverDataProcessing from '../requestsServerModule.js'
 
 const PersonForm = ({persons, setPersons, personNextId}) => {
   
@@ -29,10 +27,7 @@ const PersonForm = ({persons, setPersons, personNextId}) => {
     });
       
     if (isInList === false && name != '') {
-      axios.post(URL, {
-        name: name,
-        number: number
-      })
+      serverDataProcessing.insertData(name, number)
       .then(person => {
           setPersons(persons.concat(person.data));
       });
