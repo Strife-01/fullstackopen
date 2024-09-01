@@ -21,7 +21,11 @@ const App = () => {
   return (
     <div>
       <h2>Phonebook</h2>
-      <Filter persons={persons} setShowAll={setShowAll} setPersonsToShow={setPersonsToShow}/>
+      <Filter 
+        persons={persons} 
+        setShowAll={setShowAll} 
+        setPersonsToShow={setPersonsToShow}
+      />
 
       <h2>Add new number</h2>
       <PersonForm 
@@ -30,7 +34,13 @@ const App = () => {
       />
 
       <h2>Numbers</h2>
-      <Persons persons={persons} personsToShow={personsToShow} showAll={showAll}/> 
+      <Persons 
+        persons={persons} 
+        personsToShow={personsToShow} 
+        showAll={showAll}
+        setPersons={setPersons}
+        setPersonsToShow={setPersonsToShow}
+      /> 
     </div>
   )
 }

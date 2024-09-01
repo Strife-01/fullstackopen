@@ -35,4 +35,14 @@ async function insertData(name, number){
   }
 }
 
-export default {fetchData, insertData}
+async function deleteData(id) {
+  try {
+    const del_URL = `${URL}/${id}`;
+    const data = await axios.delete(del_URL)
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export default {fetchData, insertData, deleteData}
