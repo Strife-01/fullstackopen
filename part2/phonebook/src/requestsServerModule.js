@@ -41,7 +41,7 @@ async function deleteData(id) {
     const data = await axios.delete(del_URL)
     return data;
   } catch (error) {
-    console.log(error);
+    throw new Error(`${id} is not in the database`);
   }
 }
 

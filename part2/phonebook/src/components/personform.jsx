@@ -1,7 +1,7 @@
 import {useState} from 'react'
 import serverDataProcessing from '../requestsServerModule.js'
 
-const PersonForm = ({persons, setPersons, personNextId}) => {
+const PersonForm = ({persons, setPersons, setMessage, setMessageStyle}) => {
   
   const [newName, setNewName] = useState('');
   const [newNumber, setNewNumber] = useState('');
@@ -39,6 +39,12 @@ const PersonForm = ({persons, setPersons, personNextId}) => {
       .then(person => {
           setPersons(persons.concat(person.data));
       });
+
+      setMessageStyle("message");
+      setMessage(`Added ${name}`);
+      setTimeout(() => {
+        setMessage(null);
+      }, 5000);
       //setPersons(persons.concat({name: name, number: number, id: personNextId.current}));
       //personNextId.current++;
     }
