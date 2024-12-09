@@ -1,13 +1,13 @@
 # FullStackOpen Solutions Repository
 
-![FullStackOpen Logo](https://fullstackopen.com/static/media/logo.0c69a28c.svg)
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9n4AVrqrkYKbXRPr1jb2eTsNGHRg_mrjl7w&s" alt="FullStackOpen Logo" width="200">
 
 This repository contains solutions to the exercises and assignments from the **[FullStackOpen](https://fullstackopen.com/en/)** course. It is **strictly intended for educational purposes** and serves as a way for the course maintainers to check the submitted solutions. This is **not a showcase of projects** or custom implementations beyond the required coursework.
 
 The solutions present here are for:
- - Part 0
- - Part 1
- - Part 2
+ - **Part 0**
+ - **Part 1**
+ - **Part 2**
 
 ---
 
